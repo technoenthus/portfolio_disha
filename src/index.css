@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-deep-black text-white font-sans;
+    overflow-x: hidden;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-near-black/80 backdrop-blur-md border border-white/10;
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .glass-card:hover {
+    @apply border-neon-purple/30 shadow-lg;
+    box-shadow: 0 8px 32px rgba(168, 85, 247, 0.1);
+  }
+  
+  .section-container {
+    @apply max-w-7xl mx-auto px-6 py-20;
+  }
+}
