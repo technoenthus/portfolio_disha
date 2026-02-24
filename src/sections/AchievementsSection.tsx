@@ -99,7 +99,7 @@ const AchievementsSection = () => {
             { number: "30K+", label: "Competitors Outperformed" },
             { number: "Top 1%", label: "Consistent Ranking" },
             { number: "2024-25", label: "Recognition Period" }
-          ].map((stat, index) => (
+          ].map((stat, _index) => (
             <motion.div
               key={stat.label}
               className="glass-card p-6 rounded-xl"

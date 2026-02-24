@@ -1,1 +1,261 @@
-import { motion } from 'framer-motion';\nimport { useInView } from '../hooks/useInView';\n\nconst AchievementsWall = () => {\n  const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true });\n\n  const achievements = [\n    {\n      id: 1,\n      title: \"NXP WIT Scholar\",\n      subtitle: \"Top 75 Nationwide\",\n      description: \"Selected for the prestigious NXP Women in Tech (Batch III) program focused on VLSI and semiconductor design.\",\n      impact: \"75/10,000+ applicants\",\n      category: \"Recognition\",\n      year: \"2024\",\n      icon: \"⭐\",\n      color: \"neon-blue\"\n    },\n    {\n      id: 2,\n      title: \"Myntra HackerRamp\",\n      subtitle: \"Pre-Finalist\",\n      description: \"Among the top 0.23% of 30,000+ teams. Led the team as a semi-finalist in India's largest hackathon.\",\n      impact: \"Top 0.23% of 30K teams\",\n      category: \"Competition\",\n      year: \"2024\",\n      icon: \"👑\",\n      color: \"neon-purple\"\n    },\n    {\n      id: 3,\n      title: \"Young Barons Pitch\",\n      subtitle: \"1st Runner-Up\",\n      description: \"Recognized as 1st Runner-Up in Young Barons Pitch @Greenbucks-Enactus, competing among 1,200+ innovative student teams.\",\n      impact: \"1st Runner-Up/1,200+ teams\",\n      category: \"Entrepreneurship\",\n      year: \"2024\",\n      icon: \"💡\",\n      color: \"alexa-blue\"\n    },\n    {\n      id: 4,\n      title: \"IPSR 2025 Paper\",\n      subtitle: \"International Publication\",\n      description: \"Paper on 'Detecting Depression and Suicidal Ideation Through Social Media' selected for IPSR2025 conference in the UK.\",\n      impact: \"International Conference\",\n      category: \"Research\",\n      year: \"2025\",\n      icon: \"📚\",\n      color: \"microsoft-blue\"\n    }\n  ];\n\n  const connections = [\n    { from: 0, to: 1 },\n    { from: 1, to: 2 },\n    { from: 2, to: 3 },\n    { from: 0, to: 3 }\n  ];\n\n  return (\n    <section \n      ref={ref}\n      className=\"py-32 bg-gradient-to-b from-deep-black to-near-black relative overflow-hidden\"\n    >\n      {/* Constellation background */}\n      <div className=\"absolute inset-0 opacity-10\">\n        <svg className=\"w-full h-full\" viewBox=\"0 0 1000 1000\">\n          {[...Array(50)].map((_, i) => (\n            <circle\n              key={i}\n              cx={Math.random() * 1000}\n              cy={Math.random() * 1000}\n              r={Math.random() * 2 + 0.5}\n              fill=\"#00d4ff\"\n              opacity={Math.random() * 0.5 + 0.2}\n            />\n          ))}\n        </svg>\n      </div>\n\n      <div className=\"section-container relative z-10\">\n        <motion.div\n          className=\"text-center mb-20\"\n          initial={{ opacity: 0, y: 50 }}\n          animate={inView ? { opacity: 1, y: 0 } : {}}\n          transition={{ duration: 0.8 }}\n        >\n          <motion.div\n            className=\"inline-flex items-center gap-3 mb-6 px-6 py-3 glass-card rounded-full\"\n            whileHover={{ scale: 1.05 }}\n          >\n            <div className=\"w-3 h-3 bg-neon-blue rounded-full animate-pulse\" />\n            <span className=\"text-neon-blue font-mono text-sm tracking-wider\">IMPACT WALL</span>\n          </motion.div>\n          \n          <h2 className=\"text-4xl lg:text-6xl font-bold mb-6\">\n            <span className=\"text-white\">Proven</span>\n            <span className=\"text-lavender\"> Excellence</span>\n          </h2>\n          \n          <p className=\"text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed\">\n            Recognition and achievements that demonstrate consistent performance at the highest levels.\n          </p>\n        </motion.div>\n\n        {/* Constellation Layout */}\n        <div className=\"relative max-w-6xl mx-auto\">\n          {/* Connection Lines */}\n          <svg className=\"absolute inset-0 w-full h-full pointer-events-none\" style={{ zIndex: 1 }}>\n            {connections.map((connection, index) => {\n              const positions = [\n                { x: '20%', y: '25%' },  // NXP\n                { x: '80%', y: '20%' },  // Myntra\n                { x: '25%', y: '75%' },  // Young Barons\n                { x: '75%', y: '80%' }   // IPSR\n              ];\n              \n              return (\n                <motion.line\n                  key={index}\n                  x1={positions[connection.from].x}\n                  y1={positions[connection.from].y}\n                  x2={positions[connection.to].x}\n                  y2={positions[connection.to].y}\n                  stroke=\"rgba(0, 212, 255, 0.2)\"\n                  strokeWidth=\"1\"\n                  initial={{ pathLength: 0, opacity: 0 }}\n                  animate={inView ? { pathLength: 1, opacity: 1 } : {}}\n                  transition={{ delay: 1 + index * 0.2, duration: 1 }}\n                />\n              );\n            })}\n          </svg>\n\n          {/* Achievement Cards */}\n          <div className=\"relative\" style={{ zIndex: 2 }}>\n            {achievements.map((achievement, index) => {\n              const positions = [\n                'top-0 left-0',      // NXP\n                'top-0 right-0',     // Myntra  \n                'bottom-0 left-0',   // Young Barons\n                'bottom-0 right-0'   // IPSR\n              ];\n\n              return (\n                <motion.div\n                  key={achievement.id}\n                  className={`absolute ${positions[index]} w-80 max-w-sm`}\n                  initial={{ opacity: 0, scale: 0.8, y: 50 }}\n                  animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}\n                  transition={{ delay: index * 0.2, duration: 0.8 }}\n                  whileHover={{ \n                    scale: 1.05, \n                    y: -10,\n                    transition: { duration: 0.3 }\n                  }}\n                >\n                  <div className=\"glass-card p-6 rounded-2xl group cursor-pointer relative overflow-hidden\">\n                    {/* Glow effect */}\n                    <div className={`absolute inset-0 bg-gradient-to-br from-${achievement.color}/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl`} />\n                    \n                    {/* Header */}\n                    <div className=\"flex items-start justify-between mb-4\">\n                      <div className=\"text-4xl\">{achievement.icon}</div>\n                      <div className=\"text-right\">\n                        <span className={`text-xs px-2 py-1 bg-${achievement.color}/20 text-${achievement.color} rounded-full`}>\n                          {achievement.category}\n                        </span>\n                        <p className=\"text-text-muted text-xs mt-1\">{achievement.year}</p>\n                      </div>\n                    </div>\n\n                    {/* Content */}\n                    <h3 className={`text-xl font-bold text-white mb-2 group-hover:text-${achievement.color} transition-colors`}>\n                      {achievement.title}\n                    </h3>\n                    \n                    <p className={`text-${achievement.color} font-semibold text-sm mb-3`}>\n                      {achievement.subtitle}\n                    </p>\n                    \n                    <p className=\"text-text-secondary text-sm leading-relaxed mb-4\">\n                      {achievement.description}\n                    </p>\n\n                    {/* Impact Metric */}\n                    <div className=\"border-t border-white/10 pt-4\">\n                      <span className=\"text-xs text-text-muted uppercase tracking-wider\">Impact</span>\n                      <p className={`text-${achievement.color} font-bold`}>{achievement.impact}</p>\n                    </div>\n\n                    {/* Floating particles */}\n                    <div className=\"absolute top-2 right-2 w-2 h-2 bg-neon-blue/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity\" />\n                    <div className=\"absolute bottom-4 left-4 w-1 h-1 bg-neon-purple/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity delay-100\" />\n                  </div>\n                </motion.div>\n              );\n            })}\n          </div>\n\n          {/* Central Hub */}\n          <motion.div\n            className=\"absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2\"\n            initial={{ opacity: 0, scale: 0 }}\n            animate={inView ? { opacity: 1, scale: 1 } : {}}\n            transition={{ delay: 0.8, duration: 0.8 }}\n          >\n            <div className=\"w-32 h-32 glass-card rounded-full flex items-center justify-center relative\">\n              <div className=\"text-center\">\n                <div className=\"text-2xl mb-2\">🎯</div>\n                <p className=\"text-xs text-neon-blue font-semibold\">EXCELLENCE</p>\n                <p className=\"text-xs text-text-muted\">DRIVEN</p>\n              </div>\n              \n              {/* Rotating ring */}\n              <motion.div\n                className=\"absolute inset-0 border-2 border-neon-blue/30 rounded-full\"\n                animate={{ rotate: 360 }}\n                transition={{ duration: 20, repeat: Infinity, ease: \"linear\" }}\n              />\n            </div>\n          </motion.div>\n        </div>\n\n        {/* Stats Summary */}\n        <motion.div\n          className=\"mt-32 grid md:grid-cols-4 gap-8 text-center\"\n          initial={{ opacity: 0, y: 50 }}\n          animate={inView ? { opacity: 1, y: 0 } : {}}\n          transition={{ delay: 1.5, duration: 0.8 }}\n        >\n          {[\n            { number: \"4\", label: \"Major Achievements\", color: \"neon-blue\" },\n            { number: \"30K+\", label: \"Competitors Outperformed\", color: \"neon-purple\" },\n            { number: \"Top 1%\", label: \"Consistent Ranking\", color: \"alexa-blue\" },\n            { number: \"2024-25\", label: \"Recognition Period\", color: \"microsoft-blue\" }\n          ].map((stat, index) => (\n            <motion.div\n              key={stat.label}\n              className=\"glass-card p-6 rounded-xl\"\n              initial={{ opacity: 0, y: 30 }}\n              animate={inView ? { opacity: 1, y: 0 } : {}}\n              transition={{ delay: 1.7 + index * 0.1, duration: 0.5 }}\n              whileHover={{ scale: 1.05, y: -5 }}\n            >\n              <div className={`text-3xl font-bold text-${stat.color} mb-2`}>\n                {stat.number}\n              </div>\n              <div className=\"text-text-secondary text-sm uppercase tracking-wider\">\n                {stat.label}\n              </div>\n            </motion.div>\n          ))}\n        </motion.div>\n      </div>\n    </section>\n  );\n};\n\nexport default AchievementsWall;
+import { motion } from 'framer-motion';
+import { useInView } from '../hooks/useInView';
+
+const AchievementsWall = () => {
+  const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true });
+
+  const achievements = [
+    {
+      id: 1,
+      title: "NXP WIT Scholar",
+      subtitle: "Top 75 Nationwide",
+      description: "Selected for the prestigious NXP Women in Tech (Batch III) program focused on VLSI and semiconductor design.",
+      impact: "75/10,000+ applicants",
+      category: "Recognition",
+      year: "2024",
+      icon: "⭐",
+      color: "neon-blue"
+    },
+    {
+      id: 2,
+      title: "Myntra HackerRamp",
+      subtitle: "Pre-Finalist",
+      description: "Among the top 0.23% of 30,000+ teams. Led the team as a semi-finalist in India's largest hackathon.",
+      impact: "Top 0.23% of 30K teams",
+      category: "Competition",
+      year: "2024",
+      icon: "👑",
+      color: "neon-purple"
+    },
+    {
+      id: 3,
+      title: "Young Barons Pitch",
+      subtitle: "1st Runner-Up",
+      description: "Recognized as 1st Runner-Up in Young Barons Pitch @Greenbucks-Enactus, competing among 1,200+ innovative student teams.",
+      impact: "1st Runner-Up/1,200+ teams",
+      category: "Entrepreneurship",
+      year: "2024",
+      icon: "💡",
+      color: "alexa-blue"
+    },
+    {
+      id: 4,
+      title: "IPSR 2025 Paper",
+      subtitle: "International Publication",
+      description: "Paper on 'Detecting Depression and Suicidal Ideation Through Social Media' selected for IPSR2025 conference in the UK.",
+      impact: "International Conference",
+      category: "Research",
+      year: "2025",
+      icon: "📚",
+      color: "microsoft-blue"
+    }
+  ];
+
+  const connections = [
+    { from: 0, to: 1 },
+    { from: 1, to: 2 },
+    { from: 2, to: 3 },
+    { from: 0, to: 3 }
+  ];
+
+  return (
+    <section 
+      ref={ref}
+      className="py-32 bg-gradient-to-b from-deep-black to-near-black relative overflow-hidden"
+    >
+      {/* Constellation background */}
+      <div className="absolute inset-0 opacity-10">
+        <svg className="w-full h-full" viewBox="0 0 1000 1000">
+          {[...Array(50)].map((_, i) => (
+            <circle
+              key={i}
+              cx={Math.random() * 1000}
+              cy={Math.random() * 1000}
+              r={Math.random() * 2 + 0.5}
+              fill="#00d4ff"
+              opacity={Math.random() * 0.5 + 0.2}
+            />
+          ))}
+        </svg>
+      </div>
+
+      <div className="section-container relative z-10">
+        <motion.div
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 50 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.div
+            className="inline-flex items-center gap-3 mb-6 px-6 py-3 glass-card rounded-full"
+            whileHover={{ scale: 1.05 }}
+          >
+            <div className="w-3 h-3 bg-neon-blue rounded-full animate-pulse" />
+            <span className="text-neon-blue font-mono text-sm tracking-wider">IMPACT WALL</span>
+          </motion.div>
+          
+          <h2 className="text-4xl lg:text-6xl font-bold mb-6">
+            <span className="text-white">Proven</span>
+            <span className="text-lavender"> Excellence</span>
+          </h2>
+          
+          <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
+            Recognition and achievements that demonstrate consistent performance at the highest levels.
+          </p>
+        </motion.div>
+
+        {/* Constellation Layout */}
+        <div className="relative max-w-6xl mx-auto">
+          {/* Connection Lines */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }}>
+            {connections.map((connection, index) => {
+              const positions = [
+                { x: '20%', y: '25%' },  // NXP
+                { x: '80%', y: '20%' },  // Myntra
+                { x: '25%', y: '75%' },  // Young Barons
+                { x: '75%', y: '80%' }   // IPSR
+              ];
+              
+              return (
+                <motion.line
+                  key={index}
+                  x1={positions[connection.from].x}
+                  y1={positions[connection.from].y}
+                  x2={positions[connection.to].x}
+                  y2={positions[connection.to].y}
+                  stroke="rgba(0, 212, 255, 0.2)"
+                  strokeWidth="1"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={inView ? { pathLength: 1, opacity: 1 } : {}}
+                  transition={{ delay: 1 + index * 0.2, duration: 1 }}
+                />
+              );
+            })}
+          </svg>
+
+          {/* Achievement Cards */}
+          <div className="relative" style={{ zIndex: 2 }}>
+            {achievements.map((achievement, index) => {
+              const positions = [
+                'top-0 left-0',      // NXP
+                'top-0 right-0',     // Myntra  
+                'bottom-0 left-0',   // Young Barons
+                'bottom-0 right-0'   // IPSR
+              ];
+
+              return (
+                <motion.div
+                  key={achievement.id}
+                  className={`absolute ${positions[index]} w-80 max-w-sm`}
+                  initial={{ opacity: 0, scale: 0.8, y: 50 }}
+                  animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
+                  transition={{ delay: index * 0.2, duration: 0.8 }}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    y: -10,
+                    transition: { duration: 0.3 }
+                  }}
+                >
+                  <div className="glass-card p-6 rounded-2xl group cursor-pointer relative overflow-hidden">
+                    {/* Glow effect */}
+                    <div className={`absolute inset-0 bg-gradient-to-br from-${achievement.color}/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl`} />
+                    
+                    {/* Header */}
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="text-4xl">{achievement.icon}</div>
+                      <div className="text-right">
+                        <span className={`text-xs px-2 py-1 bg-${achievement.color}/20 text-${achievement.color} rounded-full`}>
+                          {achievement.category}
+                        </span>
+                        <p className="text-text-muted text-xs mt-1">{achievement.year}</p>
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <h3 className={`text-xl font-bold text-white mb-2 group-hover:text-${achievement.color} transition-colors`}>
+                      {achievement.title}
+                    </h3>
+                    
+                    <p className={`text-${achievement.color} font-semibold text-sm mb-3`}>
+                      {achievement.subtitle}
+                    </p>
+                    
+                    <p className="text-text-secondary text-sm leading-relaxed mb-4">
+                      {achievement.description}
+                    </p>
+
+                    {/* Impact Metric */}
+                    <div className="border-t border-white/10 pt-4">
+                      <span className="text-xs text-text-muted uppercase tracking-wider">Impact</span>
+                      <p className={`text-${achievement.color} font-bold`}>{achievement.impact}</p>
+                    </div>
+
+                    {/* Floating particles */}
+                    <div className="absolute top-2 right-2 w-2 h-2 bg-neon-blue/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute bottom-4 left-4 w-1 h-1 bg-neon-purple/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity delay-100" />
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Central Hub */}
+          <motion.div
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={inView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ delay: 0.8, duration: 0.8 }}
+          >
+            <div className="w-32 h-32 glass-card rounded-full flex items-center justify-center relative">
+              <div className="text-center">
+                <div className="text-2xl mb-2">🎯</div>
+                <p className="text-xs text-neon-blue font-semibold">EXCELLENCE</p>
+                <p className="text-xs text-text-muted">DRIVEN</p>
+              </div>
+              
+              {/* Rotating ring */}
+              <motion.div
+                className="absolute inset-0 border-2 border-neon-blue/30 rounded-full"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              />
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Stats Summary */}
+        <motion.div
+          className="mt-32 grid md:grid-cols-4 gap-8 text-center"
+          initial={{ opacity: 0, y: 50 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 1.5, duration: 0.8 }}
+        >
+          {[
+            { number: "4", label: "Major Achievements", color: "neon-blue" },
+            { number: "30K+", label: "Competitors Outperformed", color: "neon-purple" },
+            { number: "Top 1%", label: "Consistent Ranking", color: "alexa-blue" },
+            { number: "2024-25", label: "Recognition Period", color: "microsoft-blue" }
+          ].map((stat, index) => (
+            <motion.div
+              key={stat.label}
+              className="glass-card p-6 rounded-xl"
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 1.7 + index * 0.1, duration: 0.5 }}
+              whileHover={{ scale: 1.05, y: -5 }}
+            >
+              <div className={`text-3xl font-bold text-${stat.color} mb-2`}>
+                {stat.number}
+              </div>
+              <div className="text-text-secondary text-sm uppercase tracking-wider">
+                {stat.label}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+export default AchievementsWall;

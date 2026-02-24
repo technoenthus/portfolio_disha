@@ -81,7 +81,7 @@ const BeyondTheResume = () => {
               <div>
                 <h4 className="text-lg font-semibold text-neon-purple mb-3">What I Love Doing</h4>
                 <div className="flex flex-wrap gap-2">
-                  {hobbies.map((hobby, index) => (
+                  {hobbies.map((hobby, _index) => (
                     <span 
                       key={hobby}
                       className="px-3 py-1.5 bg-white/5 border border-neon-purple/20 rounded-lg text-sm text-gray-300 hover:border-neon-purple/40 transition-colors duration-200"

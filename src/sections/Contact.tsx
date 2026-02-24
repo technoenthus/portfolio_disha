@@ -118,7 +118,7 @@ const Contact = () => {
                   "Mobile App Development",
                   "Open Source Contributions",
                   "Hackathons & Competitions"
-                ].map((item, index) => (
+                ].map((item, _index) => (
                   <div key={item} className="flex items-center text-text-muted">
                     <div className="w-1 h-1 bg-lavender rounded-full mr-3" />
                     {item}

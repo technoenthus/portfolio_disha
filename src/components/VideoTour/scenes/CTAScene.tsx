@@ -11,7 +11,7 @@ const CTAScene = () => {
   const particlesRef = useRef<THREE.Points>(null!);
 
   const count = 500;
-  const { positions, velocities } = useMemo(() => {
+  const { positions, velocities: _velocities } = useMemo(() => {
     const positions = new Float32Array(count * 3);
     const velocities = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {

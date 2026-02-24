@@ -1,2 +1,314 @@
-import { motion } from 'framer-motion';\nimport { useInView } from '../hooks/useInView';\nimport { useState } from 'react';\n\ninterface Project {\n  id: number;\n  title: string;\n  description: string;\n  technologies: string[];\n  link?: string;\n  linkType: string;\n  status: string;\n  impact: string;\n  category: 'AI/ML' | 'Mobile' | 'Web' | 'IoT';\n}\n\nconst ProjectShowcase = () => {\n  const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });\n  const [selectedProject, setSelectedProject] = useState<Project | null>(null);\n\n  const projects: Project[] = [\n    {\n      id: 1,\n      title: \"Cooig\",\n      description: \"A campus-first social platform where students can share notes, trade items, and connect through real-time chat, all in one place.\",\n      technologies: [\"React\", \"Node.js\", \"Socket.io\", \"MongoDB\"],\n      link: \"https://github.com/Nancytechie/Cooig\",\n      linkType: \"GitHub\",\n      status: \"Active\",\n      impact: \"500+ active users\",\n      category: \"Web\"\n    },\n    {\n      id: 2,\n      title: \"Everybite\",\n      description: \"An AI-powered food scanner that instantly shows a food item's NutriScore and EcoScore, suggests healthier swaps, and tailors meal plans.\",\n      technologies: [\"AI/ML\", \"Computer Vision\", \"React\", \"Python\"],\n      link: \"https://github.com/bushra931/EveryBitee\",\n      linkType: \"GitHub\",\n      status: \"Active\",\n      impact: \"95% accuracy rate\",\n      category: \"AI/ML\"\n    },\n    {\n      id: 3,\n      title: \"EchoSight\",\n      description: \"An assistive device using YOLOv5 and Arduino to detect objects for visually impaired users with real-time audio cues.\",\n      technologies: [\"YOLOv5\", \"Arduino\", \"Computer Vision\", \"IoT\"],\n      linkType: \"Private\",\n      status: \"Completed\",\n      impact: \"Real-world deployment\",\n      category: \"IoT\"\n    },\n    {\n      id: 4,\n      title: \"Synapse\",\n      description: \"A real-time translator converting Indian Sign Language gestures into clear speech and text for seamless communication.\",\n      technologies: [\"Machine Learning\", \"Computer Vision\", \"NLP\", \"React\"],\n      link: \"https://www.figma.com/proto/rqJbEESel5ZmgCVGOv0nNx/Synapse\",\n      linkType: \"Figma\",\n      status: \"Prototype\",\n      impact: \"Social impact focus\",\n      category: \"AI/ML\"\n    },\n    {\n      id: 5,\n      title: \"Privacy Policy Summarizer\",\n      description: \"A smart GenAI Chrome Extension that cuts through lengthy privacy policies, highlighting key permissions.\",\n      technologies: [\"GenAI\", \"Chrome Extension\", \"JavaScript\", \"NLP\"],\n      link: \"https://www.loom.com/share/8f7bcf55c8da46acb168c9c0db3c0606\",\n      linkType: \"Demo\",\n      status: \"Completed\",\n      impact: \"Privacy awareness\",\n      category: \"Web\"\n    },\n    {\n      id: 6,\n      title: \"SafeTrack\",\n      description: \"A navigation app prioritizing safety with crime data-based routing, live location sharing, and emergency alerts.\",\n      technologies: [\"React Native\", \"Maps API\", \"Real-time Data\", \"Firebase\"],\n      link: \"https://github.com/technoenthus/SafeTrack\",\n      linkType: \"GitHub\",\n      status: \"Active\",\n      impact: \"Safety-first navigation\",\n      category: \"Mobile\"\n    }\n  ];\n\n  const categoryColors = {\n    'AI/ML': 'from-neon-purple to-neon-blue',\n    'Mobile': 'from-neon-blue to-alexa-blue',\n    'Web': 'from-alexa-blue to-microsoft-blue',\n    'IoT': 'from-microsoft-blue to-neon-purple'\n  };\n\n  return (\n    <section \n      ref={ref}\n      className=\"py-32 bg-gradient-to-b from-near-black to-deep-black relative overflow-hidden\"\n    >\n      {/* Floating tech orbs */}\n      <div className=\"absolute inset-0 pointer-events-none\">\n        {[...Array(8)].map((_, i) => (\n          <motion.div\n            key={i}\n            className=\"absolute w-2 h-2 bg-neon-blue/30 rounded-full\"\n            style={{\n              left: `${Math.random() * 100}%`,\n              top: `${Math.random() * 100}%`,\n            }}\n            animate={{\n              y: [0, -30, 0],\n              opacity: [0.3, 0.8, 0.3],\n            }}\n            transition={{\n              duration: 4 + Math.random() * 2,\n              repeat: Infinity,\n              delay: Math.random() * 2,\n            }}\n          />\n        ))}\n      </div>\n\n      <div className=\"section-container relative z-10\">\n        <motion.div\n          className=\"text-center mb-20\"\n          initial={{ opacity: 0, y: 50 }}\n          animate={inView ? { opacity: 1, y: 0 } : {}}\n          transition={{ duration: 0.8 }}\n        >\n          <motion.div\n            className=\"inline-flex items-center gap-3 mb-6 px-6 py-3 glass-card rounded-full\"\n            whileHover={{ scale: 1.05 }}\n          >\n            <div className=\"w-3 h-3 bg-neon-blue rounded-full animate-pulse\" />\n            <span className=\"text-neon-blue font-mono text-sm tracking-wider\">PROJECT SHOWCASE</span>\n          </motion.div>\n          \n          <h2 className=\"text-4xl lg:text-6xl font-bold mb-6\">\n            <span className=\"text-white\">Built to</span>\n            <span className=\"text-lavender\"> Impact</span>\n          </h2>\n          \n          <p className=\"text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed\">\n            Real-world solutions addressing meaningful problems through innovative technology and thoughtful design.\n          </p>\n        </motion.div>\n\n        {/* 3D Project Grid */}\n        <div className=\"grid md:grid-cols-2 lg:grid-cols-3 gap-8\">\n          {projects.map((project, index) => (\n            <motion.div\n              key={project.id}\n              className=\"group cursor-pointer\"\n              initial={{ opacity: 0, y: 50, rotateX: 45 }}\n              animate={inView ? { opacity: 1, y: 0, rotateX: 0 } : {}}\n              transition={{ delay: index * 0.1, duration: 0.8 }}\n              whileHover={{ \n                y: -20, \n                rotateX: 5, \n                rotateY: 5,\n                scale: 1.02,\n                transition: { duration: 0.3 }\n              }}\n              onClick={() => setSelectedProject(project)}\n              style={{ transformStyle: \"preserve-3d\" }}\n            >\n              <div className=\"glass-card p-6 rounded-2xl h-full relative overflow-hidden\">\n                {/* Category indicator */}\n                <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${categoryColors[project.category]}`} />\n                \n                {/* Status badge */}\n                <div className=\"flex justify-between items-start mb-4\">\n                  <span className={`px-3 py-1 text-xs rounded-full ${\n                    project.status === 'Active' \n                      ? 'bg-green-500/20 text-green-400 border border-green-500/30'\n                      : project.status === 'Completed'\n                      ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30'\n                      : 'bg-neon-purple/20 text-neon-purple border border-neon-purple/30'\n                  }`}>\n                    {project.status}\n                  </span>\n                  <div className=\"text-2xl opacity-50 group-hover:opacity-100 transition-opacity\">\n                    {project.category === 'AI/ML' && '🤖'}\n                    {project.category === 'Mobile' && '📱'}\n                    {project.category === 'Web' && '🌐'}\n                    {project.category === 'IoT' && '⚡'}\n                  </div>\n                </div>\n\n                <h3 className=\"text-xl font-bold text-white mb-3 group-hover:text-neon-blue transition-colors\">\n                  {project.title}\n                </h3>\n                \n                <p className=\"text-text-secondary text-sm leading-relaxed mb-6 line-clamp-3\">\n                  {project.description}\n                </p>\n\n                {/* Impact metric */}\n                <div className=\"mb-4\">\n                  <span className=\"text-xs text-text-muted uppercase tracking-wider\">Impact</span>\n                  <p className=\"text-neon-blue font-semibold\">{project.impact}</p>\n                </div>\n\n                {/* Tech stack visualization */}\n                <div className=\"flex flex-wrap gap-2 mb-6\">\n                  {project.technologies.slice(0, 3).map((tech, techIndex) => (\n                    <motion.span\n                      key={tech}\n                      className=\"px-2 py-1 text-xs bg-white/5 text-text-secondary rounded border border-white/10\"\n                      whileHover={{ scale: 1.1, backgroundColor: \"rgba(0, 212, 255, 0.1)\" }}\n                    >\n                      {tech}\n                    </motion.span>\n                  ))}\n                  {project.technologies.length > 3 && (\n                    <span className=\"px-2 py-1 text-xs text-text-muted\">+{project.technologies.length - 3}</span>\n                  )}\n                </div>\n\n                {/* Action button */}\n                <motion.div\n                  className=\"flex items-center justify-between\"\n                  whileHover={{ x: 5 }}\n                >\n                  {project.link ? (\n                    <span className=\"text-neon-blue text-sm font-medium flex items-center gap-2\">\n                      🔗 {project.linkType}\n                      <svg className=\"w-4 h-4\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n                        <path strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth={2} d=\"M17 8l4 4m0 0l-4 4m4-4H3\" />\n                      </svg>\n                    </span>\n                  ) : (\n                    <span className=\"text-text-muted text-sm\">🔒 Private</span>\n                  )}\n                </motion.div>\n\n                {/* Hover glow effect */}\n                <div className=\"absolute inset-0 bg-gradient-to-br from-neon-blue/5 to-neon-purple/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl\" />\n              </div>\n            </motion.div>\n          ))}\n        </div>\n\n        {/* Project Modal */}\n        {selectedProject && (\n          <motion.div\n            className=\"fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-6\"\n            initial={{ opacity: 0 }}\n            animate={{ opacity: 1 }}\n            onClick={() => setSelectedProject(null)}\n          >\n            <motion.div\n              className=\"glass-card p-8 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto\"\n              initial={{ scale: 0.8, opacity: 0 }}\n              animate={{ scale: 1, opacity: 1 }}\n              onClick={(e) => e.stopPropagation()}\n            >\n              <div className=\"flex justify-between items-start mb-6\">\n                <h3 className=\"text-2xl font-bold text-white\">{selectedProject.title}</h3>\n                <button \n                  onClick={() => setSelectedProject(null)}\n                  className=\"text-text-muted hover:text-white transition-colors\"\n                >\n                  ✕\n                </button>\n              </div>\n              \n              <p className=\"text-text-secondary leading-relaxed mb-6\">\n                {selectedProject.description}\n              </p>\n              \n              <div className=\"grid md:grid-cols-2 gap-6 mb-6\">\n                <div>\n                  <h4 className=\"text-sm font-semibold text-neon-blue mb-2\">TECHNOLOGIES</h4>\n                  <div className=\"flex flex-wrap gap-2\">\n                    {selectedProject.technologies.map((tech) => (\n                      <span key={tech} className=\"px-3 py-1 text-xs bg-white/10 text-white rounded\">\n                        {tech}\n                      </span>\n                    ))}\n                  </div>\n                </div>\n                <div>\n                  <h4 className=\"text-sm font-semibold text-neon-blue mb-2\">IMPACT</h4>\n                  <p className=\"text-white\">{selectedProject.impact}</p>\n                </div>\n              </div>\n              \n              {selectedProject.link && (\n                <motion.a\n                  href={selectedProject.link}\n                  target=\"_blank\"\n                  rel=\"noopener noreferrer\"\n                  className=\"inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-neon-blue to-neon-purple text-white font-semibold rounded-lg\"\n                  whileHover={{ scale: 1.05 }}\n                  whileTap={{ scale: 0.95 }}\n                >\n                  View {selectedProject.linkType}\n                  <svg className=\"w-4 h-4\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n                    <path strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth={2} d=\"M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14\" />\n                  </svg>\n                </motion.a>\n              )}\n            </motion.div>\n          </motion.div>\n        )}\n      </div>\n    </section>\n  );\n};\n\nexport default ProjectShowcase;
+import { motion } from 'framer-motion';
+import { useInView } from '../hooks/useInView';
+import { useState } from 'react';
+
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  technologies: string[];
+  link?: string;
+  linkType: string;
+  status: string;
+  impact: string;
+  category: 'AI/ML' | 'Mobile' | 'Web' | 'IoT';
+}
+
+const ProjectShowcase = () => {
+  const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  const projects: Project[] = [
+    {
+      id: 1,
+      title: "Cooig",
+      description: "A campus-first social platform where students can share notes, trade items, and connect through real-time chat, all in one place.",
+      technologies: ["React", "Node.js", "Socket.io", "MongoDB"],
+      link: "https://github.com/Nancytechie/Cooig",
+      linkType: "GitHub",
+      status: "Active",
+      impact: "500+ active users",
+      category: "Web"
+    },
+    {
+      id: 2,
+      title: "Everybite",
+      description: "An AI-powered food scanner that instantly shows a food item's NutriScore and EcoScore, suggests healthier swaps, and tailors meal plans.",
+      technologies: ["AI/ML", "Computer Vision", "React", "Python"],
+      link: "https://github.com/bushra931/EveryBitee",
+      linkType: "GitHub",
+      status: "Active",
+      impact: "95% accuracy rate",
+      category: "AI/ML"
+    },
+    {
+      id: 3,
+      title: "EchoSight",
+      description: "An assistive device using YOLOv5 and Arduino to detect objects for visually impaired users with real-time audio cues.",
+      technologies: ["YOLOv5", "Arduino", "Computer Vision", "IoT"],
+      linkType: "Private",
+      status: "Completed",
+      impact: "Real-world deployment",
+      category: "IoT"
+    },
+    {
+      id: 4,
+      title: "Synapse",
+      description: "A real-time translator converting Indian Sign Language gestures into clear speech and text for seamless communication.",
+      technologies: ["Machine Learning", "Computer Vision", "NLP", "React"],
+      link: "https://www.figma.com/proto/rqJbEESel5ZmgCVGOv0nNx/Synapse",
+      linkType: "Figma",
+      status: "Prototype",
+      impact: "Social impact focus",
+      category: "AI/ML"
+    },
+    {
+      id: 5,
+      title: "Privacy Policy Summarizer",
+      description: "A smart GenAI Chrome Extension that cuts through lengthy privacy policies, highlighting key permissions.",
+      technologies: ["GenAI", "Chrome Extension", "JavaScript", "NLP"],
+      link: "https://www.loom.com/share/8f7bcf55c8da46acb168c9c0db3c0606",
+      linkType: "Demo",
+      status: "Completed",
+      impact: "Privacy awareness",
+      category: "Web"
+    },
+    {
+      id: 6,
+      title: "SafeTrack",
+      description: "A navigation app prioritizing safety with crime data-based routing, live location sharing, and emergency alerts.",
+      technologies: ["React Native", "Maps API", "Real-time Data", "Firebase"],
+      link: "https://github.com/technoenthus/SafeTrack",
+      linkType: "GitHub",
+      status: "Active",
+      impact: "Safety-first navigation",
+      category: "Mobile"
+    }
+  ];
+
+  const categoryColors = {
+    'AI/ML': 'from-neon-purple to-neon-blue',
+    'Mobile': 'from-neon-blue to-alexa-blue',
+    'Web': 'from-alexa-blue to-microsoft-blue',
+    'IoT': 'from-microsoft-blue to-neon-purple'
+  };
+
+  return (
+    <section 
+      ref={ref}
+      className="py-32 bg-gradient-to-b from-near-black to-deep-black relative overflow-hidden"
+    >
+      {/* Floating tech orbs */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-neon-blue/30 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.3, 0.8, 0.3],
+            }}
+            transition={{
+              duration: 4 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="section-container relative z-10">
+        <motion.div
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 50 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.div
+            className="inline-flex items-center gap-3 mb-6 px-6 py-3 glass-card rounded-full"
+            whileHover={{ scale: 1.05 }}
+          >
+            <div className="w-3 h-3 bg-neon-blue rounded-full animate-pulse" />
+            <span className="text-neon-blue font-mono text-sm tracking-wider">PROJECT SHOWCASE</span>
+          </motion.div>
+          
+          <h2 className="text-4xl lg:text-6xl font-bold mb-6">
+            <span className="text-white">Built to</span>
+            <span className="text-lavender"> Impact</span>
+          </h2>
+          
+          <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
+            Real-world solutions addressing meaningful problems through innovative technology and thoughtful design.
+          </p>
+        </motion.div>
+
+        {/* 3D Project Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              className="group cursor-pointer"
+              initial={{ opacity: 0, y: 50, rotateX: 45 }}
+              animate={inView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+              transition={{ delay: index * 0.1, duration: 0.8 }}
+              whileHover={{ 
+                y: -20, 
+                rotateX: 5, 
+                rotateY: 5,
+                scale: 1.02,
+                transition: { duration: 0.3 }
+              }}
+              onClick={() => setSelectedProject(project)}
+              style={{ transformStyle: "preserve-3d" }}
+            >
+              <div className="glass-card p-6 rounded-2xl h-full relative overflow-hidden">
+                {/* Category indicator */}
+                <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${categoryColors[project.category]}`} />
+                
+                {/* Status badge */}
+                <div className="flex justify-between items-start mb-4">
+                  <span className={`px-3 py-1 text-xs rounded-full ${
+                    project.status === 'Active' 
+                      ? 'bg-green-500/20 text-green-400 border border-green-500/30'
+                      : project.status === 'Completed'
+                      ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                      : 'bg-neon-purple/20 text-neon-purple border border-neon-purple/30'
+                  }`}>
+                    {project.status}
+                  </span>
+                  <div className="text-2xl opacity-50 group-hover:opacity-100 transition-opacity">
+                    {project.category === 'AI/ML' && '🤖'}
+                    {project.category === 'Mobile' && '📱'}
+                    {project.category === 'Web' && '🌐'}
+                    {project.category === 'IoT' && '⚡'}
+                  </div>
+                </div>
+
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-neon-blue transition-colors">
+                  {project.title}
+                </h3>
+                
+                <p className="text-text-secondary text-sm leading-relaxed mb-6 line-clamp-3">
+                  {project.description}
+                </p>
+
+                {/* Impact metric */}
+                <div className="mb-4">
+                  <span className="text-xs text-text-muted uppercase tracking-wider">Impact</span>
+                  <p className="text-neon-blue font-semibold">{project.impact}</p>
+                </div>
+
+                {/* Tech stack visualization */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.technologies.slice(0, 3).map((tech, _techIndex) => (
+                    <motion.span
+                      key={tech}
+                      className="px-2 py-1 text-xs bg-white/5 text-text-secondary rounded border border-white/10"
+                      whileHover={{ scale: 1.1, backgroundColor: "rgba(0, 212, 255, 0.1)" }}
+                    >
+                      {tech}
+                    </motion.span>
+                  ))}
+                  {project.technologies.length > 3 && (
+                    <span className="px-2 py-1 text-xs text-text-muted">+{project.technologies.length - 3}</span>
+                  )}
+                </div>
+
+                {/* Action button */}
+                <motion.div
+                  className="flex items-center justify-between"
+                  whileHover={{ x: 5 }}
+                >
+                  {project.link ? (
+                    <span className="text-neon-blue text-sm font-medium flex items-center gap-2">
+                      🔗 {project.linkType}
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </span>
+                  ) : (
+                    <span className="text-text-muted text-sm">🔒 Private</span>
+                  )}
+                </motion.div>
+
+                {/* Hover glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/5 to-neon-purple/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Project Modal */}
+        {selectedProject && (
+          <motion.div
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            onClick={() => setSelectedProject(null)}
+          >
+            <motion.div
+              className="glass-card p-8 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex justify-between items-start mb-6">
+                <h3 className="text-2xl font-bold text-white">{selectedProject.title}</h3>
+                <button 
+                  onClick={() => setSelectedProject(null)}
+                  className="text-text-muted hover:text-white transition-colors"
+                >
+                  ✕
+                </button>
+              </div>
+              
+              <p className="text-text-secondary leading-relaxed mb-6">
+                {selectedProject.description}
+              </p>
+              
+              <div className="grid md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <h4 className="text-sm font-semibold text-neon-blue mb-2">TECHNOLOGIES</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedProject.technologies.map((tech) => (
+                      <span key={tech} className="px-3 py-1 text-xs bg-white/10 text-white rounded">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <h4 className="text-sm font-semibold text-neon-blue mb-2">IMPACT</h4>
+                  <p className="text-white">{selectedProject.impact}</p>
+                </div>
+              </div>
+              
+              {selectedProject.link && (
+                <motion.a
+                  href={selectedProject.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-neon-blue to-neon-purple text-white font-semibold rounded-lg"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  View {selectedProject.linkType}
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </motion.a>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </div>
+    </section>
+  );
+};
+
+export default ProjectShowcase;
 
