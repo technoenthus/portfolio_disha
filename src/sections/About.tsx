@@ -148,7 +148,7 @@ const About = () => {
                     <div className="text-gray-400 text-sm">Microsoft SWE Intern</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-neon-purple mb-1">9.48</div>
+                    <div className="text-2xl font-bold text-neon-purple mb-1">9.55</div>
                     <div className="text-gray-400 text-sm">Current CGPA</div>
                   </div>
                 </div>

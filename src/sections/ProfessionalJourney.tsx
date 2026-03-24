@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion';
+import msGif from '../assets/ms.gif';
+import amazonGif from '../assets/amazon.gif';
 
 const ProfessionalJourney = () => {
   return (
@@ -61,7 +63,7 @@ const ProfessionalJourney = () => {
                 viewport={{ once: true }}
               >
                 <img 
-                  src="/src/assets/ms.gif" 
+                  src={msGif} 
                   alt="Microsoft Animation" 
                   className="w-full h-auto max-w-xs object-contain rounded-lg"
                 />
@@ -87,7 +89,7 @@ const ProfessionalJourney = () => {
                 viewport={{ once: true }}
               >
                 <img 
-                  src="/src/assets/amazon.gif" 
+                  src={amazonGif} 
                   alt="Amazon Animation" 
                   className="w-full h-auto max-w-xs object-contain rounded-lg"
                 />

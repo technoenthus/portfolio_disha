@@ -8,23 +8,26 @@ const HonorsRecognition = () => {
       year: "2024",
       description: "Selected among top 75 nationwide for prestigious VLSI and semiconductor design program",
       category: "Scholarship",
-      icon: "🏆"
+      icon: "🏆",
+      linkedin: "https://www.linkedin.com/posts/disha-malhotra-b72162285_im-honored-to-share-that-ive-been-selected-activity-7262441575136321539-73yu?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEVBlgYBxzgH22PcivH2Mp9UN4MG7VNle5M"
     },
     {
       title: "Pre-Finalist",
       organization: "Myntra HackerRamp 2024",
-      year: "2024", 
+      year: "2024",
       description: "Top 0.23% among 30,000+ participating teams in India's largest fashion-tech hackathon",
       category: "Competition",
-      icon: "🥈"
+      icon: "🥈",
+      linkedin: "https://www.linkedin.com/posts/disha-malhotra-b72162285_the-only-limit-to-our-realisation-of-tomorrow-activity-7229569573564432384-wjQf?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEVBlgYBxzgH22PcivH2Mp9UN4MG7VNle5M"
     },
     {
       title: "1st Runner-Up",
       organization: "Young Barons Pitch @Greenbucks-Enactus",
       year: "2024",
       description: "Second place among 1,200+ innovative student teams in startup pitch competition",
-      category: "Competition", 
-      icon: "🥈"
+      category: "Competition",
+      icon: "🥈",
+      linkedin: "https://www.linkedin.com/posts/disha-malhotra-b72162285_ybep2024-ybep2024-greenbucks-activity-7200443313357824000-DYEL?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEVBlgYBxzgH22PcivH2Mp9UN4MG7VNle5M"
     },
     {
       title: "Research Publication",
@@ -32,7 +35,8 @@ const HonorsRecognition = () => {
       year: "2025",
       description: "Paper on 'Detecting Depression and Suicidal Ideation Through Social Media: A Comparative Study' accepted for international conference",
       category: "Research",
-      icon: "📄"
+      icon: "📄",
+      linkedin: "https://www.linkedin.com/posts/vaibhaavtiwari_certificate-ugcPost-7316955320126164992-BYXl?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEVBlgYBxzgH22PcivH2Mp9UN4MG7VNle5M"
     },
     {
       title: "Perfect Academic Performance",
@@ -40,7 +44,8 @@ const HonorsRecognition = () => {
       year: "2024",
       description: "10.00 SGPA in 4th Semester, maintaining 9.48 CGPA overall",
       category: "Academic",
-      icon: "🎓"
+      icon: "🎓",
+      linkedin: "https://www.linkedin.com/posts/disha-malhotra-b72162285_%F0%9D%90%86%F0%9D%90%9E%F0%9D%90%AD%F0%9D%90%AD%F0%9D%90%A2%F0%9D%90%A7%F0%9D%90%A0-%F0%9D%90%9A-10-%F0%9D%90%92%F0%9D%90%86%F0%9D%90%8F%F0%9D%90%80-%F0%9D%90%AD%F0%9D%90%A1%F0%9D%90%A2%F0%9D%90%AC-%F0%9D%90%AC-activity-7342782209579241472-oxlP?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEVBlgYBxzgH22PcivH2Mp9UN4MG7VNle5M"
     },
     {
       title: "Student of the Year 2022",
@@ -48,7 +53,8 @@ const HonorsRecognition = () => {
       year: "2022",
       description: "Awarded Student of the Year award in 2022. Actively participated in inter-school events and blah ablah",
       category: "Academic",
-      icon: "📚"
+      icon: "📚",
+      linkedin: ""
     }
   ];
 
@@ -62,33 +68,27 @@ const HonorsRecognition = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <motion.div
-            className="inline-flex items-center gap-3 mb-6 px-6 py-3 glass-card rounded-full"
-            whileHover={{ scale: 1.05 }}
-          >
-            <div className="w-3 h-3 bg-neon-blue rounded-full animate-pulse" />
-            <span className="text-neon-blue font-mono text-sm tracking-wider">HONORS</span>
-          </motion.div>
           <h2 className="text-4xl lg:text-6xl font-bold mb-6">
             <span className="text-white">Honors &</span>
             <br />
             <span className="text-lavender">Recognition</span>
           </h2>
-          <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
-            Achievements that reflect dedication, excellence, and impact
-          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {achievements.map((achievement, index) => (
-            <motion.div
+            <motion.a
               key={achievement.title}
-              className="glass-card p-6 rounded-2xl relative group"
+              href={achievement.linkedin || undefined}
+              target={achievement.linkedin ? "_blank" : undefined}
+              rel={achievement.linkedin ? "noopener noreferrer" : undefined}
+              className="glass-card p-6 rounded-2xl relative group block no-underline cursor-pointer"
+              style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              whileHover={{ y: -5, scale: 1.02 }}
+              whileHover={{ y: -12, boxShadow: '0 20px 60px rgba(168, 85, 247, 0.3), 0 0 30px rgba(0, 209, 255, 0.15)' }}
             >
               <div className="text-center mb-6">
                 <div className="text-4xl mb-4">{achievement.icon}</div>
@@ -106,9 +106,7 @@ const HonorsRecognition = () => {
               <h4 className="text-neon-blue font-semibold mb-2 text-center">{achievement.organization}</h4>
               <div className="text-gray-400 text-sm font-mono text-center mb-4">{achievement.year}</div>
               <p className="text-gray-300 text-sm leading-relaxed text-center">{achievement.description}</p>
-
-              <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/5 to-neon-purple/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </motion.div>
+            </motion.a>
           ))}
         </div>
 
