@@ -3,7 +3,7 @@ import aboutImage from '../assets/about.png';
 
 const BeyondTheResume = () => {
   const hobbies = [
-    'Drama', 'Traveling', 'Coding', 'Music', 'Running', 'Netowrking'
+    'Traveling', 'Coding', 'Listening Music', 'Running', 'Netowrking'
   ];
 
   return (

@@ -1,10 +1,36 @@
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import icon from '../assets/icon.png';
 
 const Header = () => {
+  const [activeSection, setActiveSection] = useState('introduction');
+
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  // Track active section on scroll
+  useEffect(() => {
+    const sectionIds = ['introduction', 'journey', 'projects', 'leadership', 'recognition', 'skills', 'contact'];
+    
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 150;
+      
+      for (const sectionId of sectionIds) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <motion.header 
@@ -35,13 +61,18 @@ const Header = () => {
               { name: 'Introduction', id: 'introduction' },
               { name: 'Experience', id: 'journey' },
               { name: 'Projects', id: 'projects' },
-              { name: 'About', id: 'beyond' },
-              { name: 'Achievements', id: 'recognition' }
+              { name: 'Leadership', id: 'leadership' },
+              { name: 'Achievements', id: 'recognition' },
+              { name: 'Skills', id: 'skills' }
             ].map((item) => (
               <motion.button
                 key={item.name}
                 onClick={() => scrollToSection(item.id)}
-                className="text-gray-300 hover:text-neon-purple transition-colors duration-200 text-sm font-medium"
+                className={`text-sm font-medium transition-all duration-200 pb-1 border-b-2 ${
+                  activeSection === item.id
+                    ? 'text-neon-purple border-neon-purple'
+                    : 'text-gray-300 border-transparent hover:text-neon-purple'
+                }`}
                 whileHover={{ y: -1 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >

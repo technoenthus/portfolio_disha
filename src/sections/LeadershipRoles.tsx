@@ -127,7 +127,7 @@ const LeadershipRoles = () => {
           <h2 className="text-4xl lg:text-6xl font-bold mb-6">
             <span className="text-white">Leadership &</span>
             <br />
-            <span className="text-lavender">Roles</span>
+            <span className="bg-gradient-to-r from-neon-purple to-neon-indigo bg-clip-text text-transparent">Roles</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Leading teams, mentoring peers, and building communities

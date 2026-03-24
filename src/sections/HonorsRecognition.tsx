@@ -71,7 +71,7 @@ const HonorsRecognition = () => {
           <h2 className="text-4xl lg:text-6xl font-bold mb-6">
             <span className="text-white">Honors &</span>
             <br />
-            <span className="text-lavender">Recognition</span>
+            <span className="bg-gradient-to-r from-neon-purple to-neon-indigo bg-clip-text text-transparent">Recognition</span>
           </h2>
         </motion.div>
 

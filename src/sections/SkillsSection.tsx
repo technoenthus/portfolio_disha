@@ -26,9 +26,9 @@ const SkillsSection = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 whitespace-nowrap">
-            <span className="bg-gradient-to-r from-neon-purple to-neon-indigo bg-clip-text text-transparent">
-              My Skills
-            </span>
+            <span className="text-white">My</span>
+            <br />
+            <span className="bg-gradient-to-r from-neon-purple to-neon-indigo bg-clip-text text-transparent">Skills</span>
           </h2>
         </motion.div>
 

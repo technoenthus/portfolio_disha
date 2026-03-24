@@ -187,6 +187,22 @@ const ContactSection = () => {
             </form>
           </motion.div>
         </div>
+
+        <motion.div
+          className="mt-24 text-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <div className="w-16 h-px bg-gradient-to-r from-transparent via-neon-purple/50 to-transparent mx-auto mb-8" />
+          <p className="text-gray-500 text-sm italic max-w-lg mx-auto leading-relaxed">
+            If it doesn’t work, I don’t stop, I rewrite it until it does.
+          </p>
+          <p className="text-gray-600 text-xs mt-3">
+            Thanks for scrolling all the way down. That means a lot.
+          </p>
+        </motion.div>
       </div>
     </section>
   );

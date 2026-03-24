@@ -16,7 +16,7 @@ const ProfessionalJourney = () => {
           <h2 className="text-4xl lg:text-6xl font-bold mb-6">
             <span className="text-white">Professional</span>
             <br />
-            <span className="text-lavender">Journey</span>
+            <span className="bg-gradient-to-r from-neon-purple to-neon-indigo bg-clip-text text-transparent">Journey</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
           </p>
@@ -116,7 +116,7 @@ const ProfessionalJourney = () => {
                 </div>
                 <h3 className="text-3xl font-bold text-white mb-4">Software Development Engineer Intern</h3>
                 <h4 className="text-xl text-alexa-blue font-semibold mb-2">Amazon</h4>
-                <h5 className="text-lg text-gray-300 mb-6">Alexa Smart Properties Team</h5>
+                <h5 className="text-lg text-gray-300 mb-6">Alexa Smart Properties </h5>
                 
                 <div className="space-y-3 mb-8">
                   <div className="flex items-start gap-3">

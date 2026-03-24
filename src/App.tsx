@@ -5,6 +5,7 @@ import { useSplashScreen } from './hooks/useSplashScreen';
 // Components
 import SplashScreen from './components/SplashScreen';
 import Header from './components/Header';
+import ComingSoon from './components/ComingSoon';
 
 // Lazy-load the heavy 3D VideoTour so it never blocks the main site
 const VideoTour = lazy(() => import('./components/VideoTour/VideoTour'));
@@ -21,17 +22,15 @@ import ContactSection from './sections/ContactSection';
 
 function App() {
   const showSplash = useSplashScreen(2500);
-  const [showVideoTour, setShowVideoTour] = useState(false);
+  const [showComingSoon, setShowComingSoon] = useState(false);
 
   return (
     <div className="min-h-screen bg-deep-black text-white overflow-x-hidden">
-      {/* ── 3D Video Tour overlay (lazy-loaded, isolated) ── */}
-      {showVideoTour && (
-        <Suspense fallback={null}>
-          <AnimatePresence>
-            <VideoTour key="video-tour" onClose={() => setShowVideoTour(false)} />
-          </AnimatePresence>
-        </Suspense>
+      {/* ── Coming Soon Screen ── */}
+      {showComingSoon && (
+        <AnimatePresence>
+          <ComingSoon key="coming-soon" onClose={() => setShowComingSoon(false)} />
+        </AnimatePresence>
       )}
 
       <AnimatePresence mode="wait">
@@ -41,7 +40,7 @@ function App() {
           <div key="main">
             <Header />
             <main className="pt-20">
-              <Hero onOpenVideoTour={() => setShowVideoTour(true)} />
+              <Hero onOpenVideoTour={() => setShowComingSoon(true)} />
               <BeyondTheResume />
               <ProfessionalJourney />
               <ThingsIveBuilt />
