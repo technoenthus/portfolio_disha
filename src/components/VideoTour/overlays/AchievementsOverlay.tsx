@@ -12,7 +12,7 @@ interface Props { onNext: () => void; onPrev: () => void; }
 
 const stats = [
   { value: 0.23,  suffix: '%',  label: 'Myntra HackerRamp',     decimals: 2 },
-  { value: 9.48,  suffix: '',   label: 'CGPA',                   decimals: 2 },
+  { value: 9.55,  suffix: '',   label: 'CGPA',                   decimals: 2 },
   { value: 1,     suffix: '',   label: 'International Publication', decimals: 0 },
   { value: 75,    suffix: '+',  label: 'Top Nationwide Rank',    decimals: 0 },
 ];

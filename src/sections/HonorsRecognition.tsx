@@ -42,7 +42,7 @@ const HonorsRecognition = () => {
       title: "Perfect Academic Performance",
       organization: "IGDTUW",
       year: "2024",
-      description: "10.00 SGPA in 4th Semester, maintaining 9.48 CGPA overall",
+      description: "10.00 SGPA in 4th Semester, maintaining 9.55 CGPA overall",
       category: "Academic",
       icon: "🎓",
       linkedin: "https://www.linkedin.com/posts/disha-malhotra-b72162285_%F0%9D%90%86%F0%9D%90%9E%F0%9D%90%AD%F0%9D%90%AD%F0%9D%90%A2%F0%9D%90%A7%F0%9D%90%A0-%F0%9D%90%9A-10-%F0%9D%90%92%F0%9D%90%86%F0%9D%90%8F%F0%9D%90%80-%F0%9D%90%AD%F0%9D%90%A1%F0%9D%90%A2%F0%9D%90%AC-%F0%9D%90%AC-activity-7342782209579241472-oxlP?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEVBlgYBxzgH22PcivH2Mp9UN4MG7VNle5M"
@@ -127,7 +127,7 @@ const HonorsRecognition = () => {
             <div className="text-gray-400 text-sm">Among 30,000+ teams</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-green-400 mb-2">9.48</div>
+            <div className="text-3xl font-bold text-green-400 mb-2">9.55</div>
             <div className="text-gray-400 text-sm">Current CGPA</div>
           </div>
           <div className="text-center">

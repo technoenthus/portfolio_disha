@@ -12,7 +12,7 @@ const achievements = [
   { id: 'nxp',     pos: [-4,  2,  1] as [number,number,number], color: '#f59e0b', label: 'NXP Women in Tech Scholar',          detail: 'Awarded for excellence in technology & innovation' },
   { id: 'myntra',  pos: [ 3,  2.5, -1] as [number,number,number], color: '#ec4899', label: 'Myntra HackerRamp Pre-Finalist',   detail: 'Top 0.23% nationwide — selected among 4000+ teams' },
   { id: 'pub',     pos: [-2, -1.5, 2] as [number,number,number], color: '#34d399', label: 'International Research Publication', detail: 'Published in UK academic journal' },
-  { id: 'cgpa',    pos: [ 4, -1,  0] as [number,number,number], color: '#818cf8', label: '9.48 CGPA',                         detail: '10 SGPA in best semester — consistent academic excellence' },
+  { id: 'cgpa',    pos: [ 4, -1,  0] as [number,number,number], color: '#818cf8', label: '9.55 CGPA',                         detail: '10 SGPA in best semester — consistent academic excellence' },
   { id: 'top75',   pos: [ 0,  3, -2] as [number,number,number], color: '#38bdf8', label: 'Top 75 Nationwide',                  detail: 'National-level technical competition' },
   { id: 'stu',     pos: [-4, -2,  0] as [number,number,number], color: '#c084fc', label: 'Student of the Year',                detail: 'IGDTUW — recognised for all-round excellence' },
 ];

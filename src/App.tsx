@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense } from 'react';
+import { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { useSplashScreen } from './hooks/useSplashScreen';
 
@@ -6,9 +6,6 @@ import { useSplashScreen } from './hooks/useSplashScreen';
 import SplashScreen from './components/SplashScreen';
 import Header from './components/Header';
 import ComingSoon from './components/ComingSoon';
-
-// Lazy-load the heavy 3D VideoTour so it never blocks the main site
-const VideoTour = lazy(() => import('./components/VideoTour/VideoTour'));
 
 // Sections
 import Hero from './sections/Hero';
