@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import aboutImage from '../assets/about.png';
+import aboutImage from '../assets/home.png';
 
 interface HeroProps {
   onOpenVideoTour: () => void;
@@ -88,7 +88,7 @@ const Hero = ({ onOpenVideoTour }: HeroProps) => {
 
           {/* Right Image - Edge Aligned */}
           <motion.div
-            className="lg:col-span-5 flex justify-center items-end"
+            className="lg:col-span-5 flex justify-center items-start lg:-mt-64"
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
