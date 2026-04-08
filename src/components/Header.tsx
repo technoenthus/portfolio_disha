@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import icon from '../assets/icon.png';
+import icon from '../assets/home.png';
 
 const Header = () => {
   const [activeSection, setActiveSection] = useState('introduction');
@@ -52,7 +52,7 @@ const Header = () => {
               className="w-10 h-10 rounded-full border-2 border-neon-purple/30"
             />
             <div>
-              <h1 className="text-lg font-semibold text-white">Disha</h1>
+              <h1 className="text-lg font-semibold text-white">Disha Malhotra</h1>
             </div>
           </motion.div>
           
